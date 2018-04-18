@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+
+@model E_Commerce.Models.ProductViewModel;
+
+<div class="row mainContents">
+    <div class="col-md-3">
+        <form action="search" method="Get">
+            <input type="text" placeholder="Search..." name="search" class="form-control">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <input type="submit" value="Filter" class="btn btn-default">
+                </div>
+            </div>
+        </form>
+        <form asp-controller="Home" asp-action="AddProduct" method="POST">
+            <h3>Add a new Product</h3>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name"></span>
+
+            <label asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" placeholder="Http://">
+            <span asp-validation-for="Image"></span>
+
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control">
+            <span asp-validation-for="Description"></span>
+
+            <label asp-for="Quantity"></label>
+            <input type="number" asp-for="Quantity" class="form-control">
+            <span asp-validation-for="Quantity"></span>
+
+            <button type="submit" class="btn btn-info float-right">Create</button>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <div class="row text-center">
+            @{
+                foreach(var item in @ViewBag.Products){
+                    <div class="col-md-2 pdright">
+                        <img src="@item.Image" alt="@item.Name" width="150px" height="150px">
+                        <p>@item.Name</p>
+                        <p>(@item.Quantity left)</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

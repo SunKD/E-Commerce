@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<E_Commerce.Models.Product>;
+
+<div class="row mainContents">
+    <div class="col-md-3">
+        <form action="search" method="Get">
+            <input type="text" placeholder="Search..." name="search" class="form-control">
+            <input type="submit" value="Filter" class="btn">
+        </form>
+    </div>
+    <div class="col-md-9">
+        <div class="row  text-center">
+            <div class="col-md-12">
+            @{
+                foreach(var item in @ViewBag.Products){
+                    <div class="col-md-2 pdright">
+                        <img src="@item.Image" alt="@item.Name" width="150px" height="150px">
+                        <p>@item.Name</p>
+                        <p>(@item.Quantity left)</p>
+                    </div>
+                }
+            }
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <a href="Products">Show More...</a>
+            </div>
+        </div>
+        <div class="row">
+            <h3><u>Recent Order</u></h3>
+        </div>
+        @{
+            foreach(var item in Model){
+                foreach(var i in item.Orders){
+                    count++;
+                    int hours = (int)DateTime.Now.Subtract(@i.Created_at).TotalHours;
+                    if(hours > 24){
+                        int days = hours/24;
+                        <p>@i.Buyer.Name purchased @i.Quantity @item.Name (@days days ago)</p>
+                    }else{
+                        <p>@i.Buyer.Name purchased @i.Quantity @item.Name (@hours hours ago)</p>
+                    }
+                }
+            }
+        }
+        <div class="row text-center">
+            <div class="col-md-12">
+                <a href="Orders">Show all orders...</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3><u>New Customers</u></h3>
+        </div>
+        @{
+            foreach(var item in @ViewBag.Customers){
+                int hours = (int)DateTime.Now.Subtract(@item.Created_at).TotalHours;
+                if(hours > 168){
+                    int weeks = hours/168;
+                    <p>@item.Name joined the store(@weeks weeks ago)</p>
+                }
+                else if(hours > 24){
+                    int days = hours/24;
+                    <p>@item.Name joined the store(@days days ago)</p>
+                }else{
+                    <p>@item.Name joined the store(@hours hours ago)</p>
+                }
+            }
+        }
+        <div class="row text-center">
+            <div class="col-md-12">
+                <a href="Customer">Show all customers...</a>
+            </div>
+        </div>
+        
+    </div>
+</div>

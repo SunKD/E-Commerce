@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+
+@model IEnumerable<E_Commerce.Models.Product>;
+
+<div class="row">
+    <h3><u>Add a New Order</u></h3>
+</div>
+    <form action ="addOrder" method="POST">
+    <div class="row">
+        <div class="col-md-2">
+            <h4>Customer</h4>
+        </div>
+        <div class="col-md-4">
+            <select name="CustomerName" class="form-control">
+                @foreach(var customer in @ViewBag.AllCustomers){
+                    <option>@customer.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <h4>Order</h4>
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="quantity" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <select name="ProductName" class="form-control">
+                @foreach(var item in Model){
+                    <option>@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <span>@ViewBag.Error</span>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" value="Order" class="btn btn-primary">
+        </div>
+    </div>  
+    </form>
+
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+            <input type="text" placeholder="Filter" class="form-control">
+        </div>
+    </div>
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Product</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var item in Model){
+                foreach(var i in item.Orders){
+                <tr>
+                    <td>@i.Buyer.Name</td>
+                    <td>@item.Name</td>
+                    <td>@i.Quantity</td>
+                    <td>@i.Created_at.ToString("MMMM dd, yyyy")</td>
+                </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="row">
+    <h3><u>Add a New Customer</u></h3>
+</div>
+<div class="row">
+    <form action ="addCustomer" method="POST">
+    <div class="col-md-2">
+        <p>Customer Name: </p>
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="InputName">
+        <input type="submit" value="Add" class="btn btn-primary">
+    </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3">
+        <input type="text" name="search" placeholder="search name...">
+    </div>
+</div>
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Created Date</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var item in @ViewBag.Customers){
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Created_at.ToString("MMMM dd, yyyy")</td>
+                    <td><a href="remove/@item.CustomerID" class="btn btn-danger">Remove</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
