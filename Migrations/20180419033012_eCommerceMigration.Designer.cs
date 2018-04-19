@@ -11,8 +11,8 @@ using System;
 namespace ECommerce.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    [Migration("20180417182819_EcommerceMigration")]
-    partial class EcommerceMigration
+    [Migration("20180419033012_eCommerceMigration")]
+    partial class eCommerceMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,7 +48,11 @@ namespace ECommerce.Migrations
 
                     b.Property<int?>("OrderID1");
 
+                    b.Property<bool>("Paid");
+
                     b.Property<int>("ProductID");
+
+                    b.Property<int>("Quantity");
 
                     b.HasKey("OrderID");
 
@@ -68,13 +72,17 @@ namespace ECommerce.Migrations
 
                     b.Property<DateTime>("Created_at");
 
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image");
+
                     b.Property<string>("Name");
 
+                    b.Property<double>("Price");
+
+                    b.Property<int>("Quantity");
+
                     b.Property<DateTime>("Updated_at");
-
-                    b.Property<string>("description");
-
-                    b.Property<string>("image");
 
                     b.HasKey("ProductID");
 

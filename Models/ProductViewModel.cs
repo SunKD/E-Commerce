@@ -23,5 +23,9 @@ namespace E_Commerce.Models
         [Display(Name = "Initial Quantity")]
         [Required]
         public int Quantity { get; set; }
+        
+        [Display(Name = "Price")]
+        [Required]
+        public int Price { get; set; }
     }
 }

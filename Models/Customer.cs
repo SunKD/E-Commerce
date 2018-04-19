@@ -8,8 +8,14 @@ namespace E_Commerce.Models
     {
         public int CustomerID { get; set; }
         public string Name { get; set; }
-        public DateTime Created_at { get; set; } = new DateTime(DateTime.UtcNow.Ticks);
-        public DateTime Updated_at { get; set; } = new DateTime(DateTime.UtcNow.Ticks);
+        public DateTime Created_at { get; set; } = DateTime.Now;
+        public DateTime Updated_at { get; set; } = DateTime.Now;
         public List<Order> Orders { get; set; } = new List<Order>();
+
+        public string displayDate{
+            get{
+                return this.Created_at.ToString("MMMM dd, yyyy");
+            }
+        }
     }
 }

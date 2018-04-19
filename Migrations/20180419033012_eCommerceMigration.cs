@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ECommerce.Migrations
 {
-    public partial class EcommerceMigration : Migration
+    public partial class eCommerceMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,10 +31,12 @@ namespace ECommerce.Migrations
                     ProductID = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Created_at = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Updated_at = table.Column<DateTime>(nullable: false),
-                    description = table.Column<string>(nullable: true),
-                    image = table.Column<string>(nullable: true)
+                    Price = table.Column<double>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    Updated_at = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,7 +52,9 @@ namespace ECommerce.Migrations
                     BuyerID = table.Column<int>(nullable: false),
                     Created_at = table.Column<DateTime>(nullable: false),
                     OrderID1 = table.Column<int>(nullable: true),
-                    ProductID = table.Column<int>(nullable: false)
+                    Paid = table.Column<bool>(nullable: false),
+                    ProductID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "Orders";
 }
 
 @model IEnumerable<E_Commerce.Models.Product>;
@@ -42,7 +42,7 @@
             <span>@ViewBag.Error</span>
         </div>
         <div class="col-md-1">
-            <input type="submit" value="Order" class="btn btn-primary">
+            <input type="submit" value="Order" class="btn btn-primary btn-block">
         </div>
     </div>  
     </form>
@@ -59,18 +59,36 @@
             <th class="text-center">Customer Name</th>
             <th class="text-center">Product</th>
             <th class="text-center">Quantity</th>
+            <th class="text-center">Total Price</th>
             <th class="text-center">Date</th>
+            <th class="text-center">Payment</th>
         </tr>
     </thead>
     <tbody>
         @{
             foreach(var item in Model){
                 foreach(var i in item.Orders){
+                    double total = @item.Price*@i.Quantity;
+                    double stripTotal = total *100;
                 <tr>
-                    <td>@i.Buyer.Name</td>
-                    <td>@item.Name</td>
-                    <td>@i.Quantity</td>
-                    <td>@i.Created_at.ToString("MMMM dd, yyyy")</td>
+                    <form action="payment/{@i.OrderID}" method="POST">
+                        <td>@i.Buyer.Name</td>
+                        <td>@item.Name</td>
+                        <td>@i.Quantity</td>
+                        <td>$@total</td>
+                        <td>@i.Created_at.ToString("MMMM dd, yyyy")</td>
+                        <td>
+                            <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_1zm5rk5RBSNohxqcD3FoabZh"
+                                data-amount="@stripTotal"
+                                data-name="@item.Name"
+                                data-description="@item.Description"
+                                data-image="@item.Image"
+                                data-locale="auto">
+                            </script>
+                        </td>
+                    </form>
                 </tr>
                 }
             }

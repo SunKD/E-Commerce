@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
 }
 @model IEnumerable<E_Commerce.Models.Product>;
 
@@ -7,7 +7,8 @@
     <div class="col-md-3">
         <form action="search" method="Get">
             <input type="text" placeholder="Search..." name="search" class="form-control">
-            <input type="submit" value="Filter" class="btn">
+            <p></p>
+            <input type="submit" value="Filter" class="btn btn-block">
         </form>
     </div>
     <div class="col-md-9">
@@ -35,7 +36,6 @@
         @{
             foreach(var item in Model){
                 foreach(var i in item.Orders){
-                    count++;
                     int hours = (int)DateTime.Now.Subtract(@i.Created_at).TotalHours;
                     if(hours > 24){
                         int days = hours/24;

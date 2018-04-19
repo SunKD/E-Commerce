@@ -47,6 +47,8 @@ namespace ECommerce.Migrations
 
                     b.Property<int?>("OrderID1");
 
+                    b.Property<bool>("Paid");
+
                     b.Property<int>("ProductID");
 
                     b.Property<int>("Quantity");
@@ -74,6 +76,8 @@ namespace ECommerce.Migrations
                     b.Property<string>("Image");
 
                     b.Property<string>("Name");
+
+                    b.Property<double>("Price");
 
                     b.Property<int>("Quantity");
 

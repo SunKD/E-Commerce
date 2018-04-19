@@ -7,22 +7,28 @@
 </div>
 <div class="row">
     <form action ="addCustomer" method="POST">
-    <div class="col-md-2">
-        <p>Customer Name: </p>
+    <div class="col-md-2 text-right">
+        <h5>Customer Name: </h5>
     </div>
-    <div class="col-md-4">
-        <input type="text" name="InputName">
-        <input type="submit" value="Add" class="btn btn-primary">
+    <div class="col-md-3">
+        <input type="text" name="InputName" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="submit" value="Add" class="btn btn-primary btn-block">
     </div>
     </form>
 </div>
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <input type="text" name="search" placeholder="search name...">
+        <form action="/search">
+            <input type="text" id="search" placeholder="search name..." class="form-control">
+        </form>
     </div>
 </div>
-<table class="table table-striped text-center">
+<div id="tablerow">
+    
+<table class="table table-striped text-center" id="customerT">
     <thead>
         <tr>
             <th class="text-center">Customer Name</th>
@@ -42,3 +48,4 @@
         }
     </tbody>
 </table>
+</div>
