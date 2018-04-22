@@ -162,7 +162,7 @@ namespace E_Commerce.Controllers
             Customer rmvCustomer = _context.Customers.SingleOrDefault(e => e.CustomerID == id);
             _context.Customers.Remove(rmvCustomer);
             _context.SaveChanges();
-            return RedirectToAction("Customer");
+            return RedirectToAction("Customers");
         }
         public IActionResult Error()
         {
